@@ -77,10 +77,7 @@ const note = () => {
           )}
         </View>
         <FlatList
-          style={{}}
-          contentContainerStyle={{
-            flex: 1,
-          }}
+          style={{ flex: 1 }}
           data={notes}
           keyExtractor={(item) => item.id}
           renderItem={({ item }) => (
@@ -92,14 +89,15 @@ const note = () => {
             />
           )}
           ListEmptyComponent={
-            <Text>
+            <Text style={{ color: "gray" }}>
               You have not created any note yet. to create note click on plus
               button
             </Text>
           }
+          showsVerticalScrollIndicator={false}
         />
       </View>
-      {selectModeOn ? (
+      {selectModeOn && selectedItems.length > 0 ? (
         <NoteItemActionBtns />
       ) : (
         <OpenEditorButton openEditor={() => router.navigate("/noteEditor")} />
