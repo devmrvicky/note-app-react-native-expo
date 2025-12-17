@@ -1,35 +1,66 @@
-import { Tabs } from 'expo-router';
-import React from 'react';
+import AppLayout from "@/components/AppLayout";
+import Ionicons from "@expo/vector-icons/Ionicons";
+import { Tabs } from "expo-router";
+import { StyleSheet } from "react-native";
 
-import { HapticTab } from '@/components/haptic-tab';
-import { IconSymbol } from '@/components/ui/icon-symbol';
-import { Colors } from '@/constants/theme';
-import { useColorScheme } from '@/hooks/use-color-scheme';
-
-export default function TabLayout() {
-  const colorScheme = useColorScheme();
-
+export default function TabsLayout() {
   return (
-    <Tabs
-      screenOptions={{
-        tabBarActiveTintColor: Colors[colorScheme ?? 'light'].tint,
-        headerShown: false,
-        tabBarButton: HapticTab,
-      }}>
-      <Tabs.Screen
-        name="index"
-        options={{
-          title: 'Home',
-          tabBarIcon: ({ color }) => <IconSymbol size={28} name="house.fill" color={color} />,
+    <AppLayout>
+      <Tabs
+        screenOptions={{
+          headerShown: false,
+          tabBarStyle: { height: 70 },
         }}
-      />
-      <Tabs.Screen
-        name="explore"
-        options={{
-          title: 'Explore',
-          tabBarIcon: ({ color }) => <IconSymbol size={28} name="paperplane.fill" color={color} />,
-        }}
-      />
-    </Tabs>
+      >
+        <Tabs.Screen
+          name="index"
+          options={{
+            title: "Home",
+            tabBarIcon: () => (
+              <Ionicons name="home-outline" size={28} color="black" />
+            ),
+            tabBarIconStyle: { flex: 1, width: "100%" },
+            tabBarLabelStyle: { fontSize: 14 },
+          }}
+        />
+        <Tabs.Screen
+          name="note"
+          options={{
+            title: "Note",
+            tabBarIcon: () => (
+              <Ionicons name="newspaper-outline" size={28} color="black" />
+            ),
+            tabBarIconStyle: { flex: 1, width: "100%" },
+            tabBarLabelStyle: { fontSize: 14 },
+          }}
+        />
+        <Tabs.Screen
+          name="todo"
+          options={{
+            title: "Todo",
+            tabBarIcon: () => (
+              <Ionicons name="reader-outline" size={28} color={"black"} />
+            ),
+            tabBarIconStyle: { flex: 1, width: "100%" },
+            tabBarLabelStyle: { fontSize: 14 },
+          }}
+        />
+        <Tabs.Screen
+          name="setting"
+          options={{
+            title: "Setting",
+            tabBarIcon: () => (
+              <Ionicons name="settings-outline" size={28} color="black" />
+            ),
+            tabBarIconStyle: { flex: 1, width: "100%" },
+            tabBarLabelStyle: { fontSize: 14 },
+          }}
+        />
+      </Tabs>
+    </AppLayout>
   );
 }
+
+const styles = StyleSheet.create({
+  tabButton: {},
+});
