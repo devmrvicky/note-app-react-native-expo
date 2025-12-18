@@ -1,16 +1,23 @@
 import Ionicons from "@expo/vector-icons/Ionicons";
-import { StyleSheet, Text, TouchableHighlight, TouchableOpacity, View } from "react-native";
+import {
+  StyleSheet,
+  TouchableHighlight,
+  TouchableOpacity,
+  View,
+} from "react-native";
+import Logo from "./Logo";
 
 export default function AppNavbar() {
   return (
     <View style={style.appNav}>
-      <Text style={{ fontSize: 20, fontWeight: "bold" }}>My Notes</Text>
+      {/* <Text style={{ fontSize: 20, fontWeight: "bold" }}>My Notes</Text> */}
+      <Logo />
 
       <View style={style.rightSide}>
         <TouchableOpacity>
           <Ionicons name="search-outline" size={30} color={"black"} />
         </TouchableOpacity>
-        <TouchableHighlight style={style.user} onPress={()=> {}}>
+        <TouchableHighlight style={style.user} onPress={() => {}}>
           <Ionicons name="person-outline" size={24} color={"black"} />
         </TouchableHighlight>
       </View>
@@ -34,6 +41,11 @@ const style = StyleSheet.create({
     alignContent: "center",
   },
   user: {
-width: 40, height: 40, borderRadius: 100, borderWidth: 1, alignItems: "center", justifyContent: "center"
-  }
+    width: 40,
+    height: 40,
+    borderRadius: 100,
+    borderWidth: 1,
+    alignItems: "center",
+    justifyContent: "center",
+  },
 });
