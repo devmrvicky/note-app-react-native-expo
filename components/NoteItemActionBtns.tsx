@@ -1,40 +1,36 @@
+import useTheme from "@/hooks/useTheme";
 import Ionicons from "@expo/vector-icons/Ionicons";
 import React from "react";
-import {
-  Alert,
-  StyleSheet,
-  Text,
-  TouchableHighlight,
-  View,
-} from "react-native";
-import DeleteBtn from "./DeleteBtn"
+import { StyleSheet, Text, TouchableHighlight, View } from "react-native";
+import DeleteBtn from "./DeleteBtn";
 
 const NoteItemActionBtns = () => {
+  const { colors } = useTheme();
   return (
-    <View style={style.actionBtnsContainer}>
+    <View style={{ ...style.actionBtnsContainer, backgroundColor: colors.bg }}>
       <TouchableHighlight
         underlayColor={"#dddddd80"}
         style={style.actionBtn}
         disabled
       >
         <View>
-          <Ionicons name="enter-outline" size={24} color="black" />
-          <Text style={{ fontSize: 10 }}>Move</Text>
+          <Ionicons name="enter-outline" size={24} color={colors.text} />
+          <Text style={{ fontSize: 10, color: colors.text }}>Move</Text>
         </View>
       </TouchableHighlight>
       <TouchableHighlight underlayColor={"#dddddd80"} style={style.actionBtn}>
         <View>
-          <Ionicons name="lock-open-outline" size={24} color="black" />
-          <Text style={{ fontSize: 10 }}>Lock</Text>
+          <Ionicons name="lock-open-outline" size={24} color={colors.text} />
+          <Text style={{ fontSize: 10, color: colors.text }}>Lock</Text>
         </View>
       </TouchableHighlight>
       <TouchableHighlight underlayColor={"#dddddd80"} style={style.actionBtn}>
         <View>
-          <Ionicons name="share-social-outline" size={24} color="black" />
-          <Text style={{ fontSize: 10 }}>Share</Text>
+          <Ionicons name="share-social-outline" size={24} color={colors.text} />
+          <Text style={{ fontSize: 10, color: colors.text }}>Share</Text>
         </View>
       </TouchableHighlight>
-      <DeleteBtn/>
+      <DeleteBtn />
     </View>
   );
 };
@@ -44,7 +40,6 @@ const style = StyleSheet.create({
     height: 50,
     flexDirection: "row",
     alignItems: "center",
-    backgroundColor: "white",
     width: "100%",
     gap: 5,
     paddingInline: 5,

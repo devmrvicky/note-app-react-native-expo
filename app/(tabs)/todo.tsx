@@ -5,6 +5,7 @@ import TodoCategories from "@/components/TodoCategories";
 import TodoEditor from "@/components/TodoEditor";
 import TodoItemActionBtns from "@/components/TodoItemActionBtns";
 import useLocalData from "@/hooks/useLocalData";
+import useTheme from "@/hooks/useTheme";
 import React, { useState } from "react";
 import { StyleSheet, Text, View } from "react-native";
 
@@ -21,6 +22,7 @@ const todo = () => {
     setSelectedItems,
   } = useLocalData();
 
+  const { colors } = useTheme();
   const handleSelectTodoItem = (id: string) => {
     if (selectedItems.includes(id)) {
       setSelectedItems((prev) => prev.filter((item) => item !== id));
@@ -37,7 +39,7 @@ const todo = () => {
   };
 
   return (
-    <View style={{ flex: 1 }}>
+    <View style={{ flex: 1, backgroundColor: colors.surface }}>
       <View style={{ flex: 1, padding: 10, gap: 10 }}>
         <View
           style={{
@@ -47,16 +49,21 @@ const todo = () => {
           }}
         >
           <View style={{ flex: 1 }}>
-            <Text style={{ fontSize: 40 }}>To-dos</Text>
+            <Text style={{ fontSize: 40, color: colors.text }}>To-dos</Text>
             <View style={{ flexDirection: "row" }}>
               {todos.length ? (
-                <Text>{todos.length} to-dos</Text>
+                <Text style={{ color: colors.textMuted }}>
+                  {todos.length} to-dos
+                </Text>
               ) : (
-                <Text>no to-do</Text>
+                <Text style={{ color: colors.textMuted }}>no to-do</Text>
               )}
 
               {todoSelectModeOn && selectedItems.length > 0 && (
-                <Text> | {selectedItems.length} to-dos selected</Text>
+                <Text style={{ color: colors.textMuted }}>
+                  {" "}
+                  | {selectedItems.length} to-dos selected
+                </Text>
               )}
             </View>
           </View>

@@ -98,7 +98,9 @@ export const DataProvider = ({ children }: { children: React.ReactNode }) => {
     };
     setItem(todoObj.id, JSON.stringify(todoObj))
       .then((data) => {
-        setTodos((data as ITodo[]).filter((d) => d.dataType === "TODO"));
+        setTodos(
+          (data as ITodo[]).filter((d) => d.dataType === "TODO").reverse()
+        );
       })
       .catch((error) => {
         console.log(error);

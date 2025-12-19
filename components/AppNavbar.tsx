@@ -1,3 +1,4 @@
+import useTheme from "@/hooks/useTheme";
 import Ionicons from "@expo/vector-icons/Ionicons";
 import {
   StyleSheet,
@@ -8,17 +9,21 @@ import {
 import Logo from "./Logo";
 
 export default function AppNavbar() {
+  const { colors } = useTheme();
   return (
-    <View style={style.appNav}>
+    <View style={{ ...style.appNav, backgroundColor: colors.bg }}>
       {/* <Text style={{ fontSize: 20, fontWeight: "bold" }}>My Notes</Text> */}
       <Logo />
 
       <View style={style.rightSide}>
         <TouchableOpacity>
-          <Ionicons name="search-outline" size={30} color={"black"} />
+          <Ionicons name="search-outline" size={30} color={colors.text} />
         </TouchableOpacity>
-        <TouchableHighlight style={style.user} onPress={() => {}}>
-          <Ionicons name="person-outline" size={24} color={"black"} />
+        <TouchableHighlight
+          style={{ ...style.user, borderColor: colors.border }}
+          onPress={() => {}}
+        >
+          <Ionicons name="person-outline" size={24} color={colors.text} />
         </TouchableHighlight>
       </View>
     </View>
@@ -27,7 +32,6 @@ export default function AppNavbar() {
 
 const style = StyleSheet.create({
   appNav: {
-    backgroundColor: "white",
     height: 70,
     flexDirection: "row",
     alignItems: "center",

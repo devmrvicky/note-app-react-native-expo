@@ -2,12 +2,14 @@ import NoteItem from "@/components/NoteItem";
 import NoteItemActionBtns from "@/components/NoteItemActionBtns";
 import OpenEditorButton from "@/components/OpenEditorButton";
 import useLocalData from "@/hooks/useLocalData";
+import useTheme from "@/hooks/useTheme";
 import Ionicons from "@expo/vector-icons/Ionicons";
 import { useRouter } from "expo-router";
 import React from "react";
 import { FlatList, Text, TouchableOpacity, View } from "react-native";
 
 const note = () => {
+  const { colors } = useTheme();
   const router = useRouter();
   const {
     notes,
@@ -33,7 +35,7 @@ const note = () => {
   };
 
   return (
-    <View style={{ flex: 1 }}>
+    <View style={{ flex: 1, backgroundColor: colors.surface }}>
       <View style={{ flex: 1, padding: 10, gap: 10 }}>
         <View
           style={{
@@ -43,16 +45,21 @@ const note = () => {
           }}
         >
           <View style={{ flex: 1 }}>
-            <Text style={{ fontSize: 40 }}>Notes</Text>
+            <Text style={{ fontSize: 40, color: colors.text }}>Notes</Text>
             <View style={{ flexDirection: "row" }}>
               {notes.length ? (
-                <Text>{notes.length} notes</Text>
+                <Text style={{ color: colors.textMuted }}>
+                  {notes.length} notes
+                </Text>
               ) : (
-                <Text>no notes</Text>
+                <Text style={{ color: colors.textMuted }}>no notes</Text>
               )}
 
               {selectedItems.length > 0 && (
-                <Text> | {selectedItems.length} notes selected</Text>
+                <Text style={{ color: colors.textMuted }}>
+                  {" "}
+                  | {selectedItems.length} notes selected
+                </Text>
               )}
             </View>
           </View>
@@ -65,7 +72,7 @@ const note = () => {
               }}
             >
               <TouchableOpacity onPress={() => handleSelectModeOff()}>
-                <Ionicons name="close-outline" size={30} color="black" />
+                <Ionicons name="close-outline" size={30} color={colors.text} />
               </TouchableOpacity>
               <TouchableOpacity
                 onPress={() => setSelectedItems(notes.map((item) => item.id))}
@@ -89,7 +96,7 @@ const note = () => {
             />
           )}
           ListEmptyComponent={
-            <Text style={{ color: "gray" }}>
+            <Text style={{ color: colors.textMuted }}>
               You have not created any note yet. to create note click on plus
               button
             </Text>

@@ -1,4 +1,5 @@
 import useLocalData from "@/hooks/useLocalData";
+import useTheme from "@/hooks/useTheme";
 import React, { useEffect, useState } from "react";
 import {
   Modal,
@@ -24,8 +25,8 @@ export default function TodoEditor({
   prevTodoId,
 }: TodoEditorProps) {
   const [todo, setTodo] = useState<string>("");
-  // const [todoId, setTodoId] = useState<string>("");
   const { saveTodo } = useLocalData();
+  const { colors } = useTheme();
 
   const handleSaveTodo = () => {
     if (!todo) return;
@@ -57,12 +58,14 @@ export default function TodoEditor({
         style={styles.centeredView}
         onPress={() => setModalVisible(false)}
       >
-        <View style={styles.modalView}>
+        <View style={{ ...styles.modalView, backgroundColor: colors.surface }}>
           <View style={styles.modalHeader}>
             <TouchableOpacity onPress={() => setModalVisible(false)}>
               <Text style={{ fontSize: 16, color: "orange" }}>Cancel</Text>
             </TouchableOpacity>
-            <Text style={{ fontSize: 18, fontWeight: "medium" }}>
+            <Text
+              style={{ fontSize: 18, fontWeight: "medium", color: colors.text }}
+            >
               New To-Do
             </Text>
             {prevTodo && prevTodoId ? (
@@ -76,11 +79,22 @@ export default function TodoEditor({
             )}
           </View>
           <TextInput
-            style={styles.textInput}
+            style={{
+              ...styles.textInput,
+              backgroundColor: colors.bg,
+              color: colors.text,
+              borderColor: colors.border,
+            }}
             placeholder="New To-Do"
+            placeholderTextColor={colors.textMuted}
             autoFocus
             value={todo}
             onChangeText={setTodo}
+            // onKeyPress={(e) => {
+            //   if (e.nativeEvent.key === "Enter") {
+            //     handleSaveTodo();
+            //   }
+            // }}
           />
         </View>
       </Pressable>
@@ -92,12 +106,9 @@ const styles = StyleSheet.create({
   centeredView: {
     flex: 1,
     justifyContent: "flex-end",
-    // alignItems: "center",
     width: "100%",
   },
   modalView: {
-    // margin: 20,
-    backgroundColor: "white",
     padding: 20,
     alignItems: "center",
     shadowColor: "#000",

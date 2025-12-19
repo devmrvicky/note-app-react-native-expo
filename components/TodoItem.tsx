@@ -1,4 +1,5 @@
 import useLocalData from "@/hooks/useLocalData";
+import useTheme from "@/hooks/useTheme";
 import Ionicons from "@expo/vector-icons/Ionicons";
 import {
   Pressable,
@@ -26,10 +27,16 @@ export default function TodoItem({
   selectedItems,
 }: TodoItemProp) {
   const { toggleTodo } = useLocalData();
+  const { colors } = useTheme();
   return (
     <Pressable
-      style={style.todoContainer}
+      style={{ ...style.todoContainer, backgroundColor: colors.bg }}
       onLongPress={() => handleSelectItem()}
+      onPress={() => {
+        if (selectModeOn) {
+          handleSelectItem();
+        }
+      }}
     >
       <TouchableOpacity onPress={() => toggleTodo({ id })}>
         <Ionicons
@@ -38,7 +45,7 @@ export default function TodoItem({
           color={isCompleted ? "orange" : "gray"}
         />
       </TouchableOpacity>
-      <Text style={{ fontSize: 18, flex: 1 }}>{todo}</Text>
+      <Text style={{ fontSize: 18, flex: 1, color: colors.text }}>{todo}</Text>
 
       {selectModeOn ? (
         <Pressable
@@ -64,7 +71,6 @@ const style = StyleSheet.create({
   todoContainer: {
     flexDirection: "row",
     gap: 10,
-    backgroundColor: "white",
     borderRadius: 10,
     height: 60,
     alignItems: "center",

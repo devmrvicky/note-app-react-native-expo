@@ -1,3 +1,4 @@
+import useTheme from "@/hooks/useTheme";
 import React from "react";
 import { FlatList, Text, TouchableHighlight } from "react-native";
 
@@ -12,6 +13,7 @@ export default function TodoCategories({
   activeCategory,
   setActiveCategory,
 }: TodoCategoriesProps) {
+  const { colors } = useTheme();
   return (
     <FlatList
       style={{ flexGrow: 0 }}
@@ -22,8 +24,9 @@ export default function TodoCategories({
       renderItem={({ item }) => (
         <TouchableHighlight
           style={{
+            borderColor: colors.border,
             backgroundColor: `${
-              item === activeCategory ? "#fff" : "#ffffff93"
+              item === activeCategory ? colors.bg : colors.surface
             }`,
             paddingVertical: 5,
             paddingHorizontal: 10,
@@ -32,7 +35,7 @@ export default function TodoCategories({
           onPress={() => setActiveCategory(item)}
           underlayColor={"orange"}
         >
-          <Text>{item}</Text>
+          <Text style={{ color: colors.text }}>{item}</Text>
         </TouchableHighlight>
       )}
       horizontal

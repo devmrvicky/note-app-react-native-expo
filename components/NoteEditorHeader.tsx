@@ -1,3 +1,4 @@
+import useTheme from "@/hooks/useTheme";
 import React from "react";
 import { StyleSheet, Text, View } from "react-native";
 import SaveButton from "./SaveButton";
@@ -10,10 +11,19 @@ const NoteEditorHeader = ({
   handleSaveNote: () => void;
   willShowSaveBtn: Boolean;
 }) => {
+  const { colors } = useTheme();
+
   return (
-    <View style={style.header}>
+    <View style={{ ...style.header, backgroundColor: colors.bg }}>
       <BackButton />
-      <Text style={{ fontSize: 20, fontWeight: "medium", flex: 1 }}>
+      <Text
+        style={{
+          fontSize: 20,
+          fontWeight: "medium",
+          flex: 1,
+          color: colors.text,
+        }}
+      >
         Note editor
       </Text>
 
@@ -24,7 +34,6 @@ const NoteEditorHeader = ({
 
 const style = StyleSheet.create({
   header: {
-    backgroundColor: "white",
     height: 70,
     flexDirection: "row",
     alignItems: "center",

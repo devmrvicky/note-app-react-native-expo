@@ -1,3 +1,4 @@
+import useTheme from "@/hooks/useTheme";
 import Ionicons from "@expo/vector-icons/Ionicons";
 import { TouchableOpacity, View } from "react-native";
 
@@ -10,6 +11,7 @@ export default function SelectItemsActionBtns({
   handleSelectModeOff,
   selectAllItems,
 }: SelectItemsActionBtnsProps) {
+  const { colors } = useTheme();
   return (
     <View
       style={{
@@ -19,7 +21,7 @@ export default function SelectItemsActionBtns({
       }}
     >
       <TouchableOpacity onPress={() => handleSelectModeOff()}>
-        <Ionicons name="close-outline" size={30} color="black" />
+        <Ionicons name="close-outline" size={30} color={colors.text} />
       </TouchableOpacity>
       <TouchableOpacity
         onPress={() => selectAllItems()}

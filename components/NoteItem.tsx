@@ -1,3 +1,4 @@
+import useTheme from "@/hooks/useTheme";
 import Ionicons from "@expo/vector-icons/Ionicons";
 import { format } from "date-fns";
 import { useRouter } from "expo-router";
@@ -21,12 +22,13 @@ export default function NoteItem({
   selectedItems: string[];
 }) {
   const router = useRouter();
+  const { colors } = useTheme();
   return (
     <TouchableOpacity
       style={{
         padding: 10,
         borderBottomWidth: 1,
-        borderBlockColor: "#ddd",
+        borderBlockColor: colors.bg,
         width: "100%",
       }}
       onPress={() =>
@@ -41,10 +43,10 @@ export default function NoteItem({
       }
       onLongPress={selectNoteItem}
     >
-      <Text style={{ fontSize: 18, fontWeight: "medium" }}>
+      <Text style={{ fontSize: 18, fontWeight: "medium", color: colors.text }}>
         {title ? title : body}
       </Text>
-      <Text style={{ fontSize: 12, color: "gray", paddingTop: 5 }}>
+      <Text style={{ fontSize: 12, color: colors.textMuted, paddingTop: 5 }}>
         {format(createdAt, "dd/MM/yyyy")}
       </Text>
 

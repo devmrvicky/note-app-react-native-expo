@@ -1,10 +1,12 @@
+import useTheme from "@/hooks/useTheme";
 import React from "react";
 import { StyleSheet, View } from "react-native";
 import DeleteBtn from "./DeleteBtn";
 
 const TodoItemActionBtns = () => {
+  const { colors } = useTheme();
   return (
-    <View style={style.actionBtnsContainer}>
+    <View style={{ ...style.actionBtnsContainer, backgroundColor: colors.bg }}>
       <DeleteBtn />
     </View>
   );
