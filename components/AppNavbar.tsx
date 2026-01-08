@@ -1,5 +1,6 @@
 import useTheme from "@/hooks/useTheme";
 import Ionicons from "@expo/vector-icons/Ionicons";
+import { useRouter } from "expo-router";
 import {
   StyleSheet,
   TouchableHighlight,
@@ -10,6 +11,7 @@ import Logo from "./Logo";
 
 export default function AppNavbar() {
   const { colors } = useTheme();
+  const router = useRouter();
   return (
     <View style={{ ...style.appNav, backgroundColor: colors.bg }}>
       {/* <Text style={{ fontSize: 20, fontWeight: "bold" }}>My Notes</Text> */}
@@ -21,7 +23,9 @@ export default function AppNavbar() {
         </TouchableOpacity>
         <TouchableHighlight
           style={{ ...style.user, borderColor: colors.border }}
-          onPress={() => {}}
+          onPress={() => {
+            router.push("/auth/signup");
+          }}
         >
           <Ionicons name="person-outline" size={24} color={colors.text} />
         </TouchableHighlight>

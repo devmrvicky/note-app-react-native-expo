@@ -4,6 +4,7 @@ import SelectItemsActionBtns from "@/components/SelectItemsActionBtns";
 import TodoCategories from "@/components/TodoCategories";
 import TodoEditor from "@/components/TodoEditor";
 import TodoItemActionBtns from "@/components/TodoItemActionBtns";
+import useBackHandler from "@/hooks/useBackhandler";
 import useLocalData from "@/hooks/useLocalData";
 import useTheme from "@/hooks/useTheme";
 import React, { useState } from "react";
@@ -37,6 +38,12 @@ const todo = () => {
     setTodoSelectModeOn(false);
     setSelectedItems([]);
   };
+
+  useBackHandler({
+    optionsVisible: todoSelectModeOn,
+    setOptionsVisible: setTodoSelectModeOn,
+    setSelectedItemIds: setSelectedItems,
+  });
 
   return (
     <View style={{ flex: 1, backgroundColor: colors.surface }}>

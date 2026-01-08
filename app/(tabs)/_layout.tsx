@@ -7,6 +7,7 @@ import { StyleSheet } from "react-native";
 export default function TabsLayout() {
   const { colors, isDarkMode } = useTheme();
   return (
+    // <KeyboardProvider>
     <AppLayout>
       <Tabs
         screenOptions={{
@@ -59,6 +60,7 @@ export default function TabsLayout() {
         />
       </Tabs>
     </AppLayout>
+    // </KeyboardProvider>
   );
 }
 

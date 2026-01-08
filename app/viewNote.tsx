@@ -35,19 +35,20 @@ const viewNote = () => {
         </Text>
         <Text
           style={{
-            fontSize: 24,
+            fontSize: 22,
             fontWeight: "medium",
             paddingVertical: 15,
             color: colors.text,
           }}
           onPress={handleNavigateToNoteEditPage}
+          numberOfLines={2}
         >
           {note.title}
         </Text>
       </View>
       <Text
         style={{
-          fontSize: 20,
+          fontSize: 18,
           flex: 1,
           alignItems: "flex-start",
           color: colors.text,

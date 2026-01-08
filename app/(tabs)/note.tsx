@@ -1,6 +1,7 @@
 import NoteItem from "@/components/NoteItem";
 import NoteItemActionBtns from "@/components/NoteItemActionBtns";
 import OpenEditorButton from "@/components/OpenEditorButton";
+import useBackHandler from "@/hooks/useBackhandler";
 import useLocalData from "@/hooks/useLocalData";
 import useTheme from "@/hooks/useTheme";
 import Ionicons from "@expo/vector-icons/Ionicons";
@@ -33,6 +34,12 @@ const note = () => {
     setSelectModeOn(false);
     setSelectedItems([]);
   };
+
+  useBackHandler({
+    optionsVisible: selectModeOn,
+    setOptionsVisible: setSelectModeOn,
+    setSelectedItemIds: setSelectedItems,
+  });
 
   return (
     <View style={{ flex: 1, backgroundColor: colors.surface }}>
