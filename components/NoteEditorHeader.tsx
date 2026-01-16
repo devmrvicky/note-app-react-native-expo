@@ -6,12 +6,15 @@ import BackButton from "./backButton";
 
 const NoteEditorHeader = ({
   handleSaveNote,
-  willShowSaveBtn,
-}: {
+}: // willShowSaveBtn = true,
+{
   handleSaveNote: () => void;
-  willShowSaveBtn: Boolean;
+  // willShowSaveBtn?: Boolean;
 }) => {
   const { colors } = useTheme();
+  // const {noteBody} =
+
+  const willShowSaveBtn = true;
 
   return (
     <View style={{ ...style.header, backgroundColor: colors.bg }}>

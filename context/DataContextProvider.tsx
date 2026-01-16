@@ -2,21 +2,20 @@ import { deleteItems, getAllItems, setItem } from "@/storage/storage";
 import { INote, ITodo } from "@/type/data";
 import { format } from "date-fns";
 import React, { createContext, useEffect, useState } from "react";
+import { ToastAndroid } from "react-native";
 // import "react-native-get-random-values";
+import { Delta } from "quill";
 import Toast from "react-native-toast-message";
-// import { v4 as uuidv } from "uuid";
 
 interface DataContextType {
   notes: INote[];
-  saveNote: ({
-    noteBody,
-    noteHeading,
-    noteId,
-  }: {
-    noteBody: string;
-    noteHeading: string;
-    noteId: string;
-  }) => void;
+  // noteBody: Delta;
+  // setNoteBody: React.Dispatch<React.SetStateAction<string>>;
+  noteHeading: string;
+  setNoteHeading: React.Dispatch<React.SetStateAction<string>>;
+  noteId: string;
+  setNoteId: React.Dispatch<React.SetStateAction<string>>;
+  saveNote: (noteBody: Delta) => void;
   selectedItems: string[];
   setSelectedItems: React.Dispatch<React.SetStateAction<string[]>>;
   deleteData: () => void;
@@ -55,20 +54,18 @@ const getFilteredTodos = (todos: ITodo[], activeCategory: string) => {
 export const DataProvider = ({ children }: { children: React.ReactNode }) => {
   const [selectedItems, setSelectedItems] = useState<string[]>([]);
   const [notes, setNotes] = useState<INote[]>([]);
+  const [noteHeading, setNoteHeading] = useState<string>("");
+  const [noteId, setNoteId] = useState<string>("");
+  // const [noteBody, setNoteBody] = useState<Delta>("");
   const [todos, setTodos] = useState<ITodo[]>([]);
   const [selectModeOn, setSelectModeOn] = useState<boolean>(false);
   const [todoSelectModeOn, setTodoSelectModeOn] = useState<boolean>(false);
   const [activeCategory, setActiveCategory] = useState<string>("All");
 
-  const saveNote = ({
-    noteBody,
-    noteHeading,
-    noteId,
-  }: {
-    noteBody: string;
-    noteHeading: string;
-    noteId: string;
-  }) => {
+  const saveNote = (noteBody: Delta) => {
+    if (!noteBody) {
+      ToastAndroid.show("Note cannot be empty", ToastAndroid.SHORT);
+    }
     const noteObj: INote = {
       id: noteId,
       title: noteHeading,
@@ -192,7 +189,13 @@ export const DataProvider = ({ children }: { children: React.ReactNode }) => {
     <DataContext.Provider
       value={{
         notes,
+        // noteBody,
+        // setNoteBody,
         saveNote,
+        noteHeading,
+        setNoteHeading,
+        noteId,
+        setNoteId,
         selectedItems,
         setSelectedItems,
         deleteData,

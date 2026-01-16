@@ -1,3 +1,4 @@
+import NoteView from "@/components/NoteView";
 import useLocalData from "@/hooks/useLocalData";
 import useTheme from "@/hooks/useTheme";
 import { format } from "date-fns";
@@ -15,6 +16,7 @@ const viewNote = () => {
     Alert.alert("Warning", "Note not found", [{ text: "OK" }]);
     return;
   }
+  console.log(note);
 
   const router = useRouter();
 
@@ -28,7 +30,7 @@ const viewNote = () => {
   };
 
   return (
-    <View style={{ flex: 1, padding: 10, backgroundColor: colors.bg }}>
+    <View style={{ flex: 1, padding: 10, backgroundColor: colors.surface }}>
       <View>
         <Text style={{ color: colors.textMuted }}>
           {format(new Date(), "dd/mm/yyyy")}| Default
@@ -46,17 +48,8 @@ const viewNote = () => {
           {note.title}
         </Text>
       </View>
-      <Text
-        style={{
-          fontSize: 18,
-          flex: 1,
-          alignItems: "flex-start",
-          color: colors.text,
-        }}
-        onPress={handleNavigateToNoteEditPage}
-      >
-        {note.body}
-      </Text>
+
+      <NoteView delta={note.body} />
     </View>
   );
 };

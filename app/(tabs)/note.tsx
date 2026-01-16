@@ -1,13 +1,14 @@
 import NoteItem from "@/components/NoteItem";
 import NoteItemActionBtns from "@/components/NoteItemActionBtns";
 import OpenEditorButton from "@/components/OpenEditorButton";
-import useBackHandler from "@/hooks/useBackhandler";
+// import useBackHandler from "@/hooks/useBackHandler";
 import useLocalData from "@/hooks/useLocalData";
 import useTheme from "@/hooks/useTheme";
 import Ionicons from "@expo/vector-icons/Ionicons";
 import { useRouter } from "expo-router";
 import React from "react";
 import { FlatList, Text, TouchableOpacity, View } from "react-native";
+import useBackHandler from "../../hooks/useBackHandler";
 
 const note = () => {
   const { colors } = useTheme();

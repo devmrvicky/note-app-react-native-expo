@@ -1,8 +1,10 @@
+import { Delta } from "quill";
+
 export interface INote {
   id: string;
   title: string;
   createdAt: Date;
-  body: string;
+  body: Delta;
   dataType: "NOTE";
 }
 

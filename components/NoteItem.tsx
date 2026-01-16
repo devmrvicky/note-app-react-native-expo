@@ -2,7 +2,9 @@ import useTheme from "@/hooks/useTheme";
 import Ionicons from "@expo/vector-icons/Ionicons";
 import { format } from "date-fns";
 import { useRouter } from "expo-router";
+import { Delta } from "quill";
 import { Pressable, Text, TouchableOpacity, View } from "react-native";
+import NoteView from "./NoteView";
 
 export default function NoteItem({
   id,
@@ -15,12 +17,13 @@ export default function NoteItem({
 }: {
   id: string;
   title: string;
-  body: string;
+  body: Delta;
   createdAt: Date;
   selectNoteItem: () => void;
   selectModeOn: Boolean;
   selectedItems: string[];
 }) {
+  console.log({ body });
   const router = useRouter();
   const { colors } = useTheme();
   return (
@@ -29,6 +32,7 @@ export default function NoteItem({
         padding: 10,
         borderBottomWidth: 1,
         borderBlockColor: colors.bg,
+        height: 70,
       }}
       onPress={() =>
         selectModeOn
@@ -43,17 +47,21 @@ export default function NoteItem({
       onLongPress={selectNoteItem}
     >
       <View style={{ flex: 1, paddingRight: selectModeOn ? 20 : 0 }}>
-        <Text
-          numberOfLines={1}
-          style={{
-            fontSize: 18,
-            fontWeight: "medium",
-            color: colors.text,
-            // borderWidth: 1,
-          }}
-        >
-          {title ? title : body}
-        </Text>
+        {title ? (
+          <Text
+            numberOfLines={1}
+            style={{
+              fontSize: 18,
+              fontWeight: "medium",
+              color: colors.text,
+              // borderWidth: 1,
+            }}
+          >
+            {title}
+          </Text>
+        ) : (
+          <NoteView delta={body} />
+        )}
         <Text style={{ fontSize: 12, color: colors.textMuted, paddingTop: 5 }}>
           {format(createdAt, "dd/MM/yyyy")}
         </Text>

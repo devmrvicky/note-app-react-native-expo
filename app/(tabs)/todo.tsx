@@ -4,7 +4,7 @@ import SelectItemsActionBtns from "@/components/SelectItemsActionBtns";
 import TodoCategories from "@/components/TodoCategories";
 import TodoEditor from "@/components/TodoEditor";
 import TodoItemActionBtns from "@/components/TodoItemActionBtns";
-import useBackHandler from "@/hooks/useBackhandler";
+import useBackHandler from "@/hooks/useBackHandler";
 import useLocalData from "@/hooks/useLocalData";
 import useTheme from "@/hooks/useTheme";
 import React, { useState } from "react";
